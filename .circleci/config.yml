@@ -1,0 +1,14 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12.9.1
+    working_directory: ~/kocuna
+    steps:
+      - checkout
+      - run:
+          name: app npm install
+          command: npm install
+      - run:
+          name: front-end unit tests
+          command: npm run affected:test

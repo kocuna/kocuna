@@ -1,0 +1,52 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: kocuna/nginx
+    container_name: nginx
+    build: nginx
+    restart: always
+    ports: 
+      - "4200:80"
+    depends_on:
+      - api
+      - app
+  app:
+    image: kocuna/app
+    container_name: app
+    build: 
+      context: .
+      dockerfile: apps/app/Dockerfile 
+    restart: always
+    expose: 
+      - "4200"
+    depends_on:
+      - api
+  api:
+    image: kocuna/api
+    container_name: api
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    expose: 
+      - "3333"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    restart: always
+    depends_on:
+      - redis
+      - postgres
+  redis:
+    image: redis:5.0.5-alpine
+    restart: always
+  postgres:
+    image: postgres:12-alpine
+    restart: always
+    environment:
+      - PG_USER=postgres
+      - PG_HOST=postgres
+      - PG_DATABASE=postgres
+      - PG_PASSWORD=postgress_password
+      - PG_PORT=5432
+  
