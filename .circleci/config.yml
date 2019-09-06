@@ -12,6 +12,3 @@ jobs:
       - run:
           name: front-end unit tests
           command: npm run affected:test
-      - run:
-          name: front-end build for production
-          command:  npm run build
