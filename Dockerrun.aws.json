@@ -6,21 +6,21 @@
             "image": "kocuna/app",
             "hostname": "app",
             "essential": false,
-            "memory": 512
+            "memory": 256
         },
         {
             "name": "api",
             "image": "kocuna/api",
             "hostname": "api",
             "essential": false,
-            "memory": 512
+            "memory": 256
         },
         {
             "name": "nginx",
             "image": "kocuna/nginx",
             "hostname": "nginx",
             "essential": true,
-            "memory": 512,
+            "memory": 256,
             "portMappings": [
                 {
                     "hostPort": 80,
