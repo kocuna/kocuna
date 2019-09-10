@@ -54,9 +54,10 @@ workflows:
   kocuna_workflow:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      # - deploy:
+      - deploy
+          # requires:
+          #   - build
+          # filters:
+          #   branches:
+          #     only: master

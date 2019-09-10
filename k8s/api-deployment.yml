@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: api-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       component: api
@@ -15,6 +15,10 @@ spec:
       containers:
         - name: api
           image: kocuna/api
+          resources:
+            requests:
+              # memory: "64Mi"
+              cpu: "300m"
           ports:
             - containerPort: 3333
           env:
