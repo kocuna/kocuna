@@ -18,6 +18,15 @@ jobs:
     working_directory: ~/kocuna
     steps:
       - checkout
+      - setup_remote_docker
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
       - run:
           name: install extra packages
           command: |
@@ -25,8 +34,14 @@ jobs:
             apk add docker
       - run:
           name: authenticate Google Cloud SKD
+          environment:
+            CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
           command: |
-            ./tools/scripts/deploy.sh
+            .circleci/buildAndPushDockerImages.sh
+      - run:
+          name: deploy
+          command: |
+            .circleci/deploy.sh
 workflows:
   version: 2
 
@@ -36,3 +51,6 @@ workflows:
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only: master

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: kocuna/api:v0.0.3
+          image: kocuna/api
           ports:
             - containerPort: 3333
           env:
