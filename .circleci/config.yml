@@ -37,9 +37,15 @@ jobs:
           environment:
             CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
           command: |
+            .circleci/authenticateGoogleCloudSDK.sh
+      - run:
+          name: Build and push docker images
+          command: |
             .circleci/buildAndPushDockerImages.sh
       - run:
           name: deploy
+          environment:
+            CLOUDSDK_CORE_DISABLE_PROMPTS: "1"
           command: |
             .circleci/deploy.sh
 workflows:
