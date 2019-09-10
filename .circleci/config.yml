@@ -12,3 +12,27 @@ jobs:
       - run:
           name: front-end unit tests
           command: npm run affected:test
+  deploy:
+    docker:
+      - image: google/cloud-sdk:261.0.0-alpine
+    working_directory: ~/kocuna
+    steps:
+      - checkout
+      - run:
+          name: install extra packages
+          command: |
+            gcloud components install kubectl
+            apk add docker
+      - run:
+          name: authenticate Google Cloud SKD
+          command: |
+            ./tools/scripts/deploy.sh
+workflows:
+  version: 2
+
+  kocuna_workflow:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
