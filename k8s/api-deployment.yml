@@ -15,6 +15,10 @@ spec:
       containers:
         - name: api
           image: kocuna/api
+          resources:
+            requests:
+              # memory: "64Mi"
+              cpu: "200m"
           ports:
             - containerPort: 3333
           env:

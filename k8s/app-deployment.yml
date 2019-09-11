@@ -15,5 +15,9 @@ spec:
       containers:
         - name: app
           image: kocuna/app
+          resources:
+            requests:
+              # memory: "64Mi"
+              cpu: "200m"
           ports:
             - containerPort: 4200
