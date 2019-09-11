@@ -26,6 +26,6 @@ describe('App', () => {
       </BrowserRouter>
     );
 
-    expect(getByText('Welcome to React')).toBeTruthy();
+    expect(getByText('Hello api')).toBeTruthy();
   });
 });
