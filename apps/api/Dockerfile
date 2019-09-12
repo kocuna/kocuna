@@ -9,4 +9,4 @@ COPY package-lock.json /usr/be/api/package-lock.json
 RUN npm install
 COPY . .
 
-CMD ["npm", "run",  "nx",  "serve",  "api"]
+CMD ["npm", "start",  "api"]
