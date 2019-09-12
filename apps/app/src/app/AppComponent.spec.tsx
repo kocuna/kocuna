@@ -1,16 +1,15 @@
-import React from 'react';
-import { render, cleanup } from '@testing-library/react';
 
+import { Matcher, SelectorMatcherOptions, cleanup, render } from '@testing-library/react';
+import { AppComponent } from './AppComponent';
 import { BrowserRouter } from 'react-router-dom';
 
-import { AppComponent } from './AppComponent';
-//hello
+import React from 'react';
 
 describe('App', () => {
   afterEach(cleanup);
 
   it('should render successfully', () => {
-    const { baseElement } = render(
+    const { baseElement } : { baseElement: HTMLElement } = render(
       <BrowserRouter>
         <AppComponent />
       </BrowserRouter>
@@ -20,7 +19,8 @@ describe('App', () => {
   });
 
   it('should have a greeting as the title', () => {
-    const { getByText } = render(
+    const { getByText }
+    : {getByText: (text: Matcher, options?: SelectorMatcherOptions | undefined) => HTMLElement} = render(
       <BrowserRouter>
         <AppComponent />
       </BrowserRouter>

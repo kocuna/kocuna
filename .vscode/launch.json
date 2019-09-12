@@ -1,0 +1,12 @@
+{
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch test",
+      "runtimeVersion": "7.10.1",
+      "program": "${workspaceFolder}/sample.js"
+    }
+  ]
+}

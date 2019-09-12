@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
+import { AppComponent } from './app/AppComponent';
 import { BrowserRouter } from 'react-router-dom';
 
-import {AppComponent} from './app/AppComponent';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   <BrowserRouter>

@@ -6,7 +6,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "@nrwl/nx"],
+  "plugins": ["@typescript-eslint", "@nrwl/nx", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -15,9 +15,6 @@
     "prettier/@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/explicit-member-accessibility": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-parameter-properties": "off",
     "@nrwl/nx/enforce-module-boundaries": [
       "error",
       {
@@ -26,13 +23,636 @@
           { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
         ]
       }
-    ]
+    ],
+    // ********************************** Javascript rules **********************************
+    //Possible Errors. These rules relate to possible syntax or logic errors in JavaScript code:
+    // Recommended "for-direction": "error",
+    // Recommended "getter-return": "error",
+    // Recommended "no-async-promise-executor": "error",
+    "no-await-in-loop": "error",
+    // Recommended "no-compare-neg-zero": "error",
+    // Recommended "no-cond-assign": "error",
+    "no-console": "error",
+    // Recommended "no-constant-condition": "error",
+    // Recommended "no-control-regex": "error",
+    // Recommended "no-debugger": "error",
+    // Recommended "no-dupe-args": "error",
+    // Recommended "no-dupe-keys": "error",
+    // Recommended "no-duplicate-case": "error",
+    // Recommended "no-empty": "error",
+    // Recommended "no-empty-character-class": "error",
+    // Recommended "no-ex-assign": "error",
+    // Recommended "no-extra-boolean-cast": "error",
+    "no-extra-parens": "off",
+    // Recommended "no-extra-semi": "error",
+    // Recommended "no-func-assign": "error",
+    // Recommended "no-inner-declarations": "error",
+    // Recommended "no-invalid-regexp": "error",
+    // Recommended "no-irregular-whitespace": "error",
+    // Recommended "no-misleading-character-class": "error",
+    // Recommended "no-obj-calls": "error",
+    // Recommended "no-prototype-builtins": "error",
+    // Recommended "no-regex-spaces": "error",
+    // Recommended "no-sparse-arrays": "error",
+    "no-template-curly-in-string": "error",
+    // Recommended "no-unexpected-multiline": "error",
+    // Recommended "no-unreachable": "error",
+    // Recommended "no-unsafe-finally": "error",
+    // Recommended "no-unsafe-negation": "error",
+    // Recommended "require-atomic-updates": "error",
+    // Recommended "use-isnan": "error",
+    // Recommended "valid-typeof": "error",
+    // Best Practices. These rules relate to better ways of doing things to help you avoid problems:
+    "accessor-pairs": "error",
+    "array-callback-return": "error",
+    "block-scoped-var": "error",
+    "class-methods-use-this": "off",
+    "complexity": ["error", 5],
+    "consistent-return": "off",
+    "curly": "error",
+    "default-case": "error",
+    "dot-location": ["error", "property"],
+    "dot-notation": "error",
+    "eqeqeq": "error",
+    "guard-for-in": "error",
+    "max-classes-per-file": ["error", 1],
+    "no-alert": "error",
+    "no-caller": "error",
+    // Recommended "no-case-declarations": "error",
+    "no-div-regex": "error",
+    "no-else-return": "off",
+    // Disable in favor of @typescript-eslint/no-empty-function "no-empty-function": "error",
+    // Recommended "no-empty-pattern": "error",
+    "no-eq-null": "error",
+    "no-eval": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    // Recommended "no-fallthrough": "error",
+    "no-floating-decimal": "error",
+    // Recommended "no-global-assign": "error",
+    "no-implicit-coercion": "error",
+    "no-implicit-globals": "error",
+    "no-implied-eval": "error",
+    "no-invalid-this": "error",
+    "no-iterator": "error",
+    "no-labels": "error",
+    "no-lone-blocks": "error",
+    "no-loop-func": "error",
+    // Disable in favor of @typescript-eslint/no-magic-numbers "no-magic-numbers": "error"
+    "no-multi-spaces": "error",
+    "no-multi-str": "error",
+    "no-new": "error",
+    "no-new-func": "error",
+    "no-new-wrappers": "error",
+    // Recommended "no-octal": "error",
+    "no-octal-escape": "error",
+    "no-param-reassign": "error",
+    "no-proto": "error",
+    // Recommended "no-redeclare": "error",
+    "no-restricted-properties": [
+      "error" // See eslint rule online to add object-properties
+    ],
+    "no-return-assign": "error",
+    "no-return-await": "error",
+    "no-script-url": "error",
+    // Recommended "no-self-assign": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-throw-literal": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unused-expressions": "error",
+    // Recommended "no-unused-labels": "error",
+    "no-useless-call": "error",
+    "no-useless-catch": "error",
+    "no-useless-concat": "error",
+    // Recommended "no-useless-escape": "error",
+    "no-useless-return": "error",
+    "no-void": "error",
+    "no-warning-comments": "error",
+    // Recommended "no-with": "error",
+    "prefer-named-capture-group": "off", //Only supported in ES2018
+    "prefer-promise-reject-errors": "error",
+    "radix": "error",
+    // Disable in favor of @typescript-eslint/require-await "require-await": "error"
+    "require-unicode-regexp": "error",
+    "vars-on-top": "off",
+    "wrap-iife": "error",
+    "yoda": "error",
+    // Strict Mode. These rules relate to strict mode directives
+    "strict": ["error", "never"], //In ECMAScript modules, which always have strict mode semantics, the directives are unnecessary
+    //Variables. These rules relate to variable declarations
+    "init-declarations": "off",
+    // Recommended "no-delete-var": "error",
+    "no-label-var": "error",
+    "no-restricted-globals": [
+      "error",
+      "addEventListener",
+      "blur",
+      "close",
+      "closed",
+      "confirm",
+      "defaultStatus",
+      "event",
+      "external",
+      "fdescribe",
+      "find",
+      "fit",
+      "focus",
+      "frameElement",
+      "frames",
+      "history",
+      "innerHeight",
+      "innerWidth",
+      "length",
+      "location",
+      "locationbar",
+      "menubar",
+      "moveBy",
+      "moveTo",
+      "name",
+      "onblur",
+      "onerror",
+      "onfocus",
+      "onload",
+      "onresize",
+      "onunload",
+      "open",
+      "opener",
+      "opera",
+      "outerHeight",
+      "outerWidth",
+      "pageXOffset",
+      "pageYOffset",
+      "parent",
+      "print",
+      "removeEventListener",
+      "resizeBy",
+      "resizeTo",
+      "screen",
+      "screenLeft",
+      "screenTop",
+      "screenX",
+      "screenY",
+      "scroll",
+      "scrollbars",
+      "scrollBy",
+      "scrollTo",
+      "scrollX",
+      "scrollY",
+      "self",
+      "status",
+      "statusbar",
+      "stop",
+      "toolbar",
+      "top"
+    ],
+    "no-shadow": "error",
+    // Recommended "no-shadow-restricted-names": "error",
+    // Recommended "no-undef": "error",
+    "no-undef-init": "error",
+    "no-undefined": "error",
+    // Stylistic Issues. These rules relate to style guidelines, and are therefore quite subjective
+    "array-bracket-newline": [
+      "error", {
+        "multiline": true,
+        "minItems": 2
+      }
+    ],
+    "array-bracket-spacing": ["error", "never"],
+    "array-element-newline": ["error", "always"],
+    "block-spacing": ["error", "always"],
+    // Disable in favor of @typescript-eslint/brace-style "brace-style": "error"
+    // Disable in favor of @typescript-eslint/camelcase "camelcase": "error"
+    "capitalized-comments": ["error", "always"],
+    "comma-dangle": ["error", "never"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "comma-style": ["error", "last"],
+    "computed-property-spacing": ["error", "never"],
+    "consistent-this": ["error", "that"],
+    "eol-last": ["error", "always"],
+    // Disable in favor of @typescript-eslint/func-call-spacing "func-call-spacing": "error"
+    "func-name-matching": ["error", "always"],
+    "func-names": ["error", "never"],
+    "func-style": [
+      "error",
+      "declaration", {
+        "allowArrowFunctions": true
+      }
+    ],
+    "function-call-argument-newline": ["error", "consistent"],
+    "function-paren-newline": ["error", "multiline-arguments"],
+    "id-blacklist": ["error", "data", "err", "e", "cb", "callback", "res"],
+    "id-length": [
+      "error", {
+        "min": 3
+      }
+    ],
+    "id-match": "off",
+    "implicit-arrow-linebreak": ["error", "beside"],
+    // Disable in favor of @typescript-eslint/indent "indent": "error"
+    "jsx-quotes": ["error", "prefer-double"],
+    "key-spacing": [
+      "error", {
+        "beforeColon": false,
+        "afterColon": true 
+      }
+    ],
+    "keyword-spacing": [
+      "error", {
+        "before": true,
+        "after": true
+      }
+    ],
+    "line-comment-position": [
+      "error", {
+        "position": "above"
+      }
+    ],
+    "linebreak-style": ["error", "unix"],
+    "lines-around-comment": ["error", { "beforeBlockComment": true }],
+    "lines-between-class-members": ["error", "always"],
+    "max-depth": ["error", 4],
+    "max-len": [
+      "error", {
+        "code": 120,
+        "tabWidth": 2,
+        "comments": 120,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "max-lines": ["error", 500],
+    "max-lines-per-function": [
+      "error", {
+        "max": 20,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "max-nested-callbacks": ["error", 5],
+    "max-params": ["error", 5],
+    "max-statements": ["error", 15],
+    "max-statements-per-line": [
+      "error", {
+        "max": 1
+      }
+    ],
+    "multiline-comment-style": ["error", "starred-block"],
+    "multiline-ternary": "error",
+    "new-cap": [
+      "error", {
+        "newIsCap": true,
+        "capIsNew": true,
+        "capIsNewExceptions": [
+          "Module"
+        ]
+      }
+    ],
+    "new-parens": "error",
+    "newline-per-chained-call": "error",
+    "no-bitwise": "error",
+    "no-continue": "error",
+    "no-inline-comments": "error",
+    "no-lonely-if": "off",
+    "no-mixed-operators": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-multi-assign": "error",
+    "no-multiple-empty-lines": ["error", {
+      "max": 1
+    }],
+    "no-negated-condition": "error",
+    "no-nested-ternary": "error",
+    "no-new-object": "error",
+    "no-plusplus": "off",
+    "no-restricted-syntax": ["error", "WithStatement"],// Add more after error if needed
+    "no-tabs": "error",
+    "no-ternary": "off",
+    "no-trailing-spaces": "error",
+    "no-underscore-dangle": [
+      "error", {
+        "allowAfterThis": true
+      }
+    ],
+    "no-unneeded-ternary": "error",
+    "no-whitespace-before-property": "error",
+    "nonblock-statement-body-position": "off", //curly rule forces braces, so this rule make no sense for this code base
+    "object-curly-newline": [
+      "error", {
+        "ObjectExpression": { "minProperties": 1, "multiline": true, "consistent": true },
+        "ObjectPattern": "never",
+        "ImportDeclaration": "never",
+        "ExportDeclaration": "never"
+      }
+    ],
+    "object-curly-spacing": ["error", "always"],
+    "object-property-newline": "error",
+    "one-var": ["error", "never"],
+    "one-var-declaration-per-line": "off", // This rule amkes no sense if one-var never is on
+    "operator-assignment": "error",
+    "operator-linebreak": ["error", "before"],
+    "padded-blocks": ["error", "never"],
+    "padding-line-between-statements": [
+      "error", {
+        "blankLine": "always",
+        "prev": "import",
+        "next": "*"
+      }, {
+        "blankLine": "any",
+        "prev": "import",
+        "next": "import"
+      }, {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }, {
+        "blankLine": "always",
+        "prev": ["const", "let"],
+        "next": "*"
+      }, {
+        "blankLine": "any",
+        "prev": ["const", "let"],
+        "next": ["const", "let"]
+      }
+    ],
+    "prefer-object-spread": "error",
+    "quote-props": ["error", "as-needed"],
+    // Disable in favor of @typescript-eslint/quotes "quotes": "error"
+    // Disable in favor of @typescript-eslint/semi "semi": "error"
+    "semi-spacing": [
+      "error", {
+        "before": false,
+        "after": true
+      }
+    ],
+    "semi-style": ["error", "last"],
+    "sort-keys": [
+      "error",
+      "asc", {
+        "caseSensitive": true,
+        "natural": true,
+        "minKeys": 2
+      }
+    ],
+    "sort-vars": "off", // Makes no sense as declaring multiple variables is disallowed
+    "space-before-blocks": ["error", "always"],
+    "space-before-function-paren": ["error", "never"],
+    "space-in-parens": ["error", "never"],
+    "space-infix-ops": "error",
+    "space-unary-ops": [
+      "error", {
+        "words": true,
+        "nonwords": false
+      }
+    ],
+    "spaced-comment": ["error", "always"],
+    "switch-colon-spacing": [
+      "error", {
+        "after": true,
+        "before": false
+      }
+    ],
+    "template-tag-spacing": ["error", "never"],
+    "unicode-bom": ["error", "never"],
+    "wrap-regex":  "error",
+    //ECMAScript 6. These rules relate to ES6, also known as ES2015
+    "arrow-body-style": ["error", "as-needed"],
+    "arrow-parens": ["error", "always"],
+    "arrow-spacing": [
+      "error", {
+        "before": true,
+        "after": true
+      }
+    ],
+    "constructor-super": "error",
+    "generator-star-spacing": [
+      "error", {
+        "before": true,
+        "after": false
+      }
+    ],
+    // Recommended "no-class-assign": "error", 
+    "no-confusing-arrow": "error",
+    "no-const-assign": "error",
+    // Recommended "no-dupe-class-members": "error",
+    "no-duplicate-imports": "error",
+    // Recommended "no-new-symbol": "error",
+    "no-restricted-imports": ["error"], //Add to array imports that apply to both FE and BE
+    //Recommended "no-this-before-super": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-rename": "error",
+    "no-var": "error",
+    "object-shorthand": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "prefer-destructuring": "error",
+    "prefer-numeric-literals": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "require-yield": "error",
+    "rest-spread-spacing": ["error", "never"],
+    "sort-imports": [
+      "error", {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }
+    ],
+    "symbol-description": "error",
+    "template-curly-spacing": ["error", "never"],
+    "yield-star-spacing": [
+      "error", {
+        "before": false,
+        "after": true
+      }
+    ],
+    // ********************************** eslint-plugin-import rules **********************************
+    "import/first": "error",
+    "import/no-amd": "error",
+    "import/no-webpack-loader-syntax": "error",
+    // ********************************** Typescript rules **********************************
+    // Recommended "@typescript-eslint/adjacent-overload-signatures": "error",
+    // Recommended "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/ban-ts-ignore": "error",
+    "@typescript-eslint/ban-types": ["error", { // Recommended but overwritten with this
+      "types": {
+        "String": {
+            "message": "Use string instead",
+            "fixWith": "string"
+        },
+        "Number": {
+            "message": "Use number instead",
+            "fixWith": "number"
+        },
+        "Object": {
+            "message": "Use an interface or type instead, and what kind of object this is"
+        },
+        "Array": {
+            "message": "Preferred []"
+        }
+      }
+    }],
+    "brace-style": "off",
+    "@typescript-eslint/brace-style": [
+      "error",
+      "1tbs", {
+        "allowSingleLine": false 
+      }
+    ],
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": [ // Recommended but overwritten with this
+      "error", {
+        "properties": "always",
+        "ignoreDestructuring": false,
+        "allow": []
+      }
+    ],
+    // Recommended "@typescript-eslint/class-name-casing":  "error",
+    "@typescript-eslint/consistent-type-assertions": [// Recommended but overwritten with this
+      "error", {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "never" 
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/explicit-function-return-type": [// Recommended but overwritten with this
+      "error",{
+        "allowExpressions": false,
+        "allowTypedFunctionExpressions": true,
+        "allowHigherOrderFunctions": true
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": [// Recommended but overwritten with this
+      "error",{
+        "accessibility": "explicit",
+        "overrides": {
+          "accessors": "explicit",
+          "constructors": "no-public",
+          "methods": "explicit",
+          "properties": "explicit",
+          "parameterProperties": "explicit"
+        }
+      }
+    ],
+    "func-call-spacing": "off",
+    "@typescript-eslint/func-call-spacing": ["error", "never"],
+    "@typescript-eslint/generic-type-naming": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],// Recommended but overwritten with this 
+    "@typescript-eslint/interface-name-prefix": [// Recommended but overwritten with this 
+      "error", {
+        "prefixWithI": "always"
+      }
+    ],
+    // Recommended "@typescript-eslint/member-delimiter-style": "error",
+    "@typescript-eslint/member-naming": [
+      "error", {
+        "private": "^_" 
+      }
+    ],
+    "@typescript-eslint/member-ordering": "error",
+    "no-array-constructor": "off",
+    // Recommended "@typescript-eslint/no-array-constructor": "error",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/no-empty-interface": "error",
+    // Recommended "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-extra-parens": "off",
+    "@typescript-eslint/no-extraneous-class": [
+      "error", {
+        "allowStaticOnly": true,
+        "allowEmpty": true
+      }
+    ],
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-for-in-array": "error",
+    "@typescript-eslint/no-inferrable-types": "off", // Recommended but overwritten with this 
+    "no-magic-numbers": "off",
+    "@typescript-eslint/no-magic-numbers": [
+      "error", {
+        "ignoreEnums": true
+    }],
+    // Recommended "@typescript-eslint/no-misused-new": "error",
+    "@typescript-eslint/no-misused-promises": "error",
+    // Recommeded "@typescript-eslint/no-namespace": "error",
+    // Recommeded "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-parameter-properties": "off", // Recommended but overwritten with this 
+    "@typescript-eslint/no-require-imports": "error",
+    "@typescript-eslint/no-this-alias": "error",
+    "@typescript-eslint/no-type-alias": "off",
+    "@typescript-eslint/no-unnecessary-qualifier": "error",
+    "@typescript-eslint/no-unnecessary-type-arguments": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [ // Recommended but overwritten with this
+      "error", {
+        "args": "none",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-use-before-define": "off",
+    // Recommended "@typescript-eslint/no-use-before-define": "error",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": "error",
+    // Recommended "@typescript-eslint/no-var-requires": "error",
+    "@typescript-eslint/prefer-for-of": "error",
+    "@typescript-eslint/prefer-function-type": "off",
+    "@typescript-eslint/prefer-includes": "error",
+    // Recommended "@typescript-eslint/prefer-namespace-keyword": "error",
+    "@typescript-eslint/prefer-readonly": "error",
+    "@typescript-eslint/prefer-regexp-exec": "error",
+    "@typescript-eslint/prefer-string-starts-ends-with": "error",
+    "@typescript-eslint/promise-function-async": "error",
+    "quotes": "off",
+    "@typescript-eslint/quotes": ["error", "single"],
+    "@typescript-eslint/require-array-sort-compare": "error",
+    "require-await": "off",
+    "@typescript-eslint/require-await": "error",
+    "@typescript-eslint/restrict-plus-operands": "error",
+    "semi": "off",
+    "@typescript-eslint/semi": [
+      "error",
+      "always", {
+        "omitLastInOneLineBlock": true
+      }
+    ],
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/triple-slash-reference": [
+      "error", {
+        "path": "never",
+        "types": "never",
+        "lib": "never"
+      }
+      
+    ],
+    // Recommended "@typescript-eslint/type-annotation-spacing": "error",
+    "@typescript-eslint/typedef": [
+      "error", {
+        "arrayDestructuring": true,
+        "arrowParameter": true,
+        "memberVariableDeclaration": true,
+        "objectDestructuring": true,
+        "parameter": true,
+        "propertyDeclaration": true,
+        "variableDeclaration": true
+      }
+    ],
+    "@typescript-eslint/unbound-method": [
+      "error", {
+        "ignoreStatic": false
+      }
+    ],
+    "@typescript-eslint/unified-signatures": "error"
   },
   "overrides": [
     {
       "files": ["*.tsx"],
       "rules": {
-        "@typescript-eslint/no-unused-vars": "off"
       }
     }
   ]

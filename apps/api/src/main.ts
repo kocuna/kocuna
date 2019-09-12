@@ -1,18 +1,22 @@
 /**
  * This is not a production server yet!
  * This is only a minimal backend to get started.
- **/
+ */
 
+import { INestApplication, Logger } from '@nestjs/common';
+import { AppModule } from './app/app.module';
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from './app/app.module';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const port = process.env.port || 3333;
+async function bootstrap(): Promise<void> {
+  const app: INestApplication = await NestFactory.create(AppModule);
+  // eslint-disable-next-line no-process-env
+  const port: string = process.env.port || '3333';
+
   await app.listen(port, () => {
-    console.log(`Listening at http://localhost:${port}/`);
+    Logger.log(`Listening at http://localhost:${port}/`);
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 bootstrap();

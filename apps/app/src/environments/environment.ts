@@ -1,6 +1,10 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// When building for production, this file is replaced with `environment.prod.ts`.
+import { IEnvironment } from './environment.interface';
 
-export const environment = {
+/**
+ * This file can be replaced during build by using the `fileReplacements` array.
+ * When building for production, this file is replaced with `environment.prod.ts`.
+ */
+
+export const environment: IEnvironment = {
   production: false
 };

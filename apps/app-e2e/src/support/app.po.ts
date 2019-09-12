@@ -1,1 +1,2 @@
-export const getGreeting = () => cy.get('h1');
+// eslint-disable-next-line @typescript-eslint/typedef
+export const getGreeting = (): string => cy.get('h1');
