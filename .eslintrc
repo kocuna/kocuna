@@ -305,10 +305,7 @@
     "new-cap": [
       "error", {
         "newIsCap": true,
-        "capIsNew": true,
-        "capIsNewExceptions": [
-          "Module"
-        ]
+        "capIsNew": true
       }
     ],
     "new-parens": "error",
