@@ -10,7 +10,6 @@
         "build": {
           "builder": "@nrwl/web:build",
           "options": {
-            "differentialLoading": true,
             "outputPath": "dist/apps/app",
             "index": "apps/app/src/index.html",
             "main": "apps/app/src/main.tsx",
@@ -23,7 +22,8 @@
             "styles": [
               "apps/app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/babel"
           },
           "configurations": {
             "production": {
@@ -200,9 +200,9 @@
     },
     "@nrwl/react": {
       "application": {
-        "babel": true,
         "style": "scss",
-        "linter": "eslint"
+        "linter": "eslint",
+        "babel": true
       },
       "component": {
         "style": "scss"
