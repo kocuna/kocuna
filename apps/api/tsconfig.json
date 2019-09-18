@@ -3,10 +3,13 @@
   "compilerOptions": {
     "types": [
       "node",
-      "jest"
+      "jest",
+      "src/@types"
     ]
   },
   "include": [
     "**/*.ts"
-  ]
+  ],
+  "paths": {
+  }
 }

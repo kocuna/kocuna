@@ -16,6 +16,12 @@
     },
     "api": {
       "tags": []
+    },
+    "responses": {
+      "tags": []
+    },
+    "requests": {
+      "tags": []
     }
   }
 }

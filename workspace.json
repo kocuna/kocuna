@@ -15,13 +15,8 @@
             "main": "apps/app/src/main.tsx",
             "polyfills": "apps/app/src/polyfills.ts",
             "tsConfig": "apps/app/tsconfig.app.json",
-            "assets": [
-              "apps/app/src/favicon.ico",
-              "apps/app/src/assets"
-            ],
-            "styles": [
-              "apps/app/src/styles.scss"
-            ],
+            "assets": ["apps/app/src/favicon.ico", "apps/app/src/assets"],
+            "styles": ["apps/app/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/babel"
           },
@@ -73,10 +68,7 @@
               "apps/app/tsconfig.app.json",
               "apps/app/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/app/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/app/**"]
           }
         },
         "test": {
@@ -111,13 +103,8 @@
           "options": {
             "linter": "eslint",
             "config": "apps/app-e2e/.eslintrc",
-            "tsConfig": [
-              "apps/app-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/app-e2e/**"
-            ]
+            "tsConfig": ["apps/app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/app-e2e/**"]
           }
         }
       }
@@ -135,9 +122,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -168,10 +153,7 @@
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/api/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
           }
         },
         "test": {
@@ -179,6 +161,42 @@
           "options": {
             "jestConfig": "apps/api/jest.config.js",
             "tsConfig": "apps/api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "responses": {
+      "root": "libs/responses",
+      "sourceRoot": "libs/responses/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/responses/tsconfig.lib.json",
+              "libs/responses/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/responses/**"]
+          }
+        }
+      }
+    },
+    "requests": {
+      "root": "libs/requests",
+      "sourceRoot": "libs/requests/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/requests/tsconfig.lib.json",
+              "libs/requests/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/requests/**"]
           }
         }
       }

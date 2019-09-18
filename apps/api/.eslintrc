@@ -8,8 +8,23 @@
         "newIsCap": true,
         "capIsNew": true,
         "capIsNewExceptions": [
+          "Body",
+          "Column",
+          "Controller",
+          "Delete",
+          "Entity",
+          "Get",
+          "Injectable",
           "Module",
-          "Controller"
+          "Param",
+          "Put",
+          "Post",
+          "IsNotEmpty",
+          "IsString",
+          "UsePipes",
+          "PrimaryGeneratedColumn",
+          "EntityRepository",
+          "InjectRepository"
         ]
       }
     ],

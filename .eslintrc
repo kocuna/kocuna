@@ -211,12 +211,12 @@
     // Recommended "no-shadow-restricted-names": "error",
     // Recommended "no-undef": "error",
     "no-undef-init": "error",
-    "no-undefined": "error",
+    "no-undefined": "off",
     // Stylistic Issues. These rules relate to style guidelines, and are therefore quite subjective
     "array-bracket-newline": [
       "error", {
         "multiline": true,
-        "minItems": 2
+        "minItems": 1
       }
     ],
     "array-bracket-spacing": ["error", "never"],
@@ -242,10 +242,19 @@
     ],
     "function-call-argument-newline": ["error", "consistent"],
     "function-paren-newline": ["error", "multiline-arguments"],
-    "id-blacklist": ["error", "data", "err", "e", "cb", "callback", "res"],
+    "id-blacklist": [
+      "error",
+      "data",
+      "err",
+      "e",
+      "cb",
+      "callback",
+      "req",
+      "res"
+    ],
     "id-length": [
       "error", {
-        "min": 3
+        "min": 2
       }
     ],
     "id-match": "off",
@@ -255,13 +264,22 @@
     "key-spacing": [
       "error", {
         "beforeColon": false,
-        "afterColon": true 
+        "afterColon": true
       }
     ],
     "keyword-spacing": [
       "error", {
         "before": true,
-        "after": true
+        "after": false,
+        "overrides": {
+          "import": {
+            "after": true
+          },
+          "from": {
+            "before": true,
+            "after": true
+          }
+        }
       }
     ],
     "line-comment-position": [
@@ -271,7 +289,7 @@
     ],
     "linebreak-style": ["error", "unix"],
     "lines-around-comment": ["error", { "beforeBlockComment": true }],
-    "lines-between-class-members": ["error", "always"],
+    "lines-between-class-members": ["error", "always"], // Unfortunately, this rule does not distinguish members from methods. https://github.com/typescript-eslint/typescript-eslint/issues/977
     "max-depth": ["error", 4],
     "max-len": [
       "error", {
@@ -430,7 +448,7 @@
         "after": false
       }
     ],
-    // Recommended "no-class-assign": "error", 
+    // Recommended "no-class-assign": "error",
     "no-confusing-arrow": "error",
     "no-const-assign": "error",
     // Recommended "no-dupe-class-members": "error",
@@ -498,7 +516,7 @@
     "@typescript-eslint/brace-style": [
       "error",
       "1tbs", {
-        "allowSingleLine": false 
+        "allowSingleLine": false
       }
     ],
     "camelcase": "off",
@@ -510,21 +528,21 @@
       }
     ],
     // Recommended "@typescript-eslint/class-name-casing":  "error",
-    "@typescript-eslint/consistent-type-assertions": [// Recommended but overwritten with this
+    "@typescript-eslint/consistent-type-assertions": [ // Recommended but overwritten with this
       "error", {
         "assertionStyle": "as",
-        "objectLiteralTypeAssertions": "never" 
+        "objectLiteralTypeAssertions": "never"
       }
     ],
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
-    "@typescript-eslint/explicit-function-return-type": [// Recommended but overwritten with this
+    "@typescript-eslint/explicit-function-return-type": [ // Recommended but overwritten with this
       "error",{
         "allowExpressions": false,
         "allowTypedFunctionExpressions": true,
         "allowHigherOrderFunctions": true
       }
     ],
-    "@typescript-eslint/explicit-member-accessibility": [// Recommended but overwritten with this
+    "@typescript-eslint/explicit-member-accessibility": [ // Recommended but overwritten with this
       "error",{
         "accessibility": "explicit",
         "overrides": {
@@ -540,19 +558,26 @@
     "@typescript-eslint/func-call-spacing": ["error", "never"],
     "@typescript-eslint/generic-type-naming": "off",
     "indent": "off",
-    "@typescript-eslint/indent": ["error", 2],// Recommended but overwritten with this 
-    "@typescript-eslint/interface-name-prefix": [// Recommended but overwritten with this 
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/interface-name-prefix": [ // Recommended but overwritten with this
       "error", {
-        "prefixWithI": "always"
+        "prefixWithI": "never"
       }
     ],
-    // Recommended "@typescript-eslint/member-delimiter-style": "error",
+    "@typescript-eslint/member-delimiter-style": [ // Recommended but overwritten with this
+      "error", {
+        "multiline": {
+          "delimiter": "semi",
+          "requireLast": true
+        }
+      }
+    ],
     "@typescript-eslint/member-naming": [
       "error", {
-        "private": "^_" 
+        "private": "^_"
       }
     ],
-    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/member-ordering": ["error"],
     "no-array-constructor": "off",
     // Recommended "@typescript-eslint/no-array-constructor": "error",
     "no-empty-function": "off",
@@ -568,7 +593,7 @@
     ],
     "@typescript-eslint/no-floating-promises": "error",
     "@typescript-eslint/no-for-in-array": "error",
-    "@typescript-eslint/no-inferrable-types": "off", // Recommended but overwritten with this 
+    "@typescript-eslint/no-inferrable-types": "off", // Recommended but overwritten with this
     "no-magic-numbers": "off",
     "@typescript-eslint/no-magic-numbers": [
       "error", {
@@ -578,7 +603,7 @@
     "@typescript-eslint/no-misused-promises": "error",
     // Recommeded "@typescript-eslint/no-namespace": "error",
     // Recommeded "@typescript-eslint/no-non-null-assertion": "error",
-    "@typescript-eslint/no-parameter-properties": "off", // Recommended but overwritten with this 
+    "@typescript-eslint/no-parameter-properties": "off", // Recommended but overwritten with this
     "@typescript-eslint/no-require-imports": "error",
     "@typescript-eslint/no-this-alias": "error",
     "@typescript-eslint/no-type-alias": "off",
@@ -625,15 +650,15 @@
         "types": "never",
         "lib": "never"
       }
-      
+
     ],
     // Recommended "@typescript-eslint/type-annotation-spacing": "error",
     "@typescript-eslint/typedef": [
       "error", {
-        "arrayDestructuring": true,
+        "arrayDestructuring": false,
         "arrowParameter": true,
         "memberVariableDeclaration": true,
-        "objectDestructuring": true,
+        "objectDestructuring": false,
         "parameter": true,
         "propertyDeclaration": true,
         "variableDeclaration": true

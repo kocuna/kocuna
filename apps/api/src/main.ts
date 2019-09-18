@@ -1,12 +1,6 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import { INestApplication, Logger } from '@nestjs/common';
-import { AppModule } from './app/app.module';
+import { AppModule } from './app/AppModule';
 import { NestFactory } from '@nestjs/core';
-
 
 async function bootstrap(): Promise<void> {
   const app: INestApplication = await NestFactory.create(AppModule);

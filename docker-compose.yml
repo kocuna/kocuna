@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  redis:
+    image: redis:5.0.5-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+  postgres:
+    image: kocuna/postgres:20190916
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - PG_USER=kocuna_root
+      - PG_HOST=localhost
+      - PG_DATABASE=kocuna
+      - PG_PASSWORD=OneHundredBillion!
+      - PG_PORT=5432

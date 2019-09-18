@@ -18,7 +18,10 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "outDir": "./tsc",
-    "paths": {},
+    "paths": {
+      "@responses/*": ["libs/responses/src/*"],
+      "@requests/*": ["libs/requests/src/*"]
+    },
     "pretty": true,
     "removeComments": false,
     "rootDir": ".",
@@ -27,6 +30,7 @@
     "sourceMap": true,
     "strict": true,
     "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
     "target": "es2015",
     "typeRoots": ["node_modules/@types"],
     "types": []
