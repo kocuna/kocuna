@@ -275,6 +275,21 @@
           "import": {
             "after": true
           },
+          "const": {
+            "after": true
+          },
+          "return": {
+            "after": true
+          },
+          "let": {
+            "after": true
+          },
+          "try": {
+            "after": true
+          },
+          "else": {
+            "after": true
+          },
           "from": {
             "before": true,
             "after": true

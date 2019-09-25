@@ -1,9 +1,13 @@
-import { TaskResponse, TaskStatusEnum } from '@responses/tasks/TaskResponse';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+
 import { CreateTaskDto } from '../dtos/CreateTaskDto';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { DeleteResult } from 'typeorm';
+import { GetTasksFilterDto } from '../dtos/GetTasksFilterDto';
 import { InjectRepository } from '@nestjs/typeorm';
+import { TaskEntity } from '../../../entities/TaskEntity';
 import { TaskRepository } from '../repositores/TaskRepository';
-import { TaskEntity } from '../entities/TaskEntity';
+import { TaskStatusEnum } from '@responses/tasks/TaskResponse';
+import { UserEntity } from '../../../entities/UserEntity';
 
 @Injectable()
 export class TasksService {
@@ -13,54 +17,64 @@ export class TasksService {
   ) {
   }
 
-  // public getAllTasks(): TaskResponse[] {
-  //   return this._tasks;
-  // }
+  public async getAllTasks(
+    filterDto: GetTasksFilterDto,
+    sessionUser: UserEntity
+  ): Promise<TaskEntity[]> {
+    return this._taskRepository.getAllTasks(filterDto, sessionUser);
+  }
 
-  public async getTaskById(id: number): Promise<TaskEntity> {
-    const found: Undefinable<TaskEntity> = await this._taskRepository.findOne(id);
+  public async getTaskById(
+    id: number,
+    sessionUser: UserEntity
+  ): Promise<TaskEntity> {
+    const foundTaskEntity: Undefinable<TaskEntity> = await this._taskRepository.findOne({
+      where: {
+        id,
+        userId: sessionUser.id
+      }
+    });
 
-    if(!found) {
+    if(!foundTaskEntity) {
       throw new NotFoundException(`Task with id ${id} not found`);
     }
 
-    return found;
+    return foundTaskEntity;
   }
 
-  public async createTask(createTaskDto: CreateTaskDto): Promise<TaskEntity> {
-    const taskEntity: TaskEntity = new TaskEntity();
+  public async createTask(
+    createTaskDto: CreateTaskDto,
+    sessionUser: UserEntity
+  ): Promise<TaskEntity> {
+    return this._taskRepository.createTask(createTaskDto, sessionUser);
+  }
 
-    taskEntity.title = createTaskDto.title;
-    taskEntity.description = createTaskDto.description;
-    taskEntity.status = TaskStatusEnum.Open;
+  public async updateTaskStatus(
+    id: number,
+    status: TaskStatusEnum,
+    sessionUser: UserEntity
+  ): Promise<TaskEntity> {
+    const taskEntity: TaskEntity = await this.getTaskById(id, sessionUser);
 
+    taskEntity.status = status;
     await taskEntity.save();
 
     return taskEntity;
   }
 
-  // public deleteTaskById(id: string): Undefinable<TaskResponse> {
-  //   let task: Undefinable<TaskResponse>;
-  //   const itemNotFound: number = -1;
+  public async deleteTaskById(
+    id: number,
+    sessionUser: UserEntity
+  ): Promise<void> {
+    const result: DeleteResult = await this._taskRepository.delete({
+      id,
+      userId: sessionUser.id
+    });
+    const noTasksDeleted: number = 0;
 
-  //   const taskIndex: number = this._tasks.findIndex((currentTask: TaskResponse) => currentTask.id === id);
-
-  //   if(taskIndex !== itemNotFound) {
-  //     task = this._tasks[taskIndex];
-  //     const deleteCount: number = 1;
-
-  //     this._tasks.splice(taskIndex, deleteCount);
-  //   }
-
-  //   return task;
-  // }
-
-  // private *_getIdGenerator(): IterableIterator<string> {
-  //   let id: number = 1;
-
-  //   while(true) {
-  //     yield id.toString();
-  //     id++;
-  //   }
-  // }
+    // This means the task did not exist or some unexpected error
+    if(result.affected === noTasksDeleted) {
+      throw new NotFoundException(`Task with id ${id} not found`);
+    }
+  }
 }

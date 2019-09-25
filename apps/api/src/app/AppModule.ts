@@ -1,5 +1,4 @@
-import { AppController } from './AppController';
-import { AppService } from './AppService';
+import { AuthModule } from './modules/auth/AuthModule';
 import { Module } from '@nestjs/common';
 import { TasksModule } from './modules/tasks/TasksModule';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,7 +8,8 @@ import { typeOrmConfig } from '../config/typeOrmConfig';
   controllers: [],
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
-    TasksModule
+    TasksModule,
+    AuthModule
   ],
   providers: []
 })
